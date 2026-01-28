@@ -3,7 +3,8 @@
     /* === Cover / Landing area === */
     --cover-text-color: #37501a;
     /* Used for Landing screen menu buttons, but potentially usable for highlighting other things */
-    --highlight: #86c440;
+    //--highlight: #86c440;
+    --highlight: #8DC540FF; //logo
     --highlight-contrast: var(--cover-text-color);
     /*inverse colors used for :hover */
     --highlight-inverse: var(--cover-text-color);
@@ -27,7 +28,8 @@
     /* Dark section - text color */
     --section-dark-text-color: var(--section-light-bg-color);
     /* Dark section - background color */
-    --section-dark-bg-color: #b80135;
+    //--section-dark-bg-color: #b80135;
+    --section-dark-bg-color: #F8931FFF; //logo
 
     /* Light&Dark section >quote. Suppressive color, compared to 'Light section - text color'*/
     --section-uni-quote: grey;

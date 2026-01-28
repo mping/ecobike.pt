@@ -1,9 +1,17 @@
+# Theme
+
+Main colors are from `logo.jpg`
+
+- F8931FFF (orange)
+- 8DC540FF (green)
+
+
 # run
 
 ```
 $ hugo server -D --logLevel debug --disableFastRender --watch -v --theme hugo-scroll
 
-$ docker run --net=host -v .:/src hugomods/hugo:ci-0.131.0 server -D --logLevel debug --disableFastRender --watch  --theme hugo-scroll
+$ docker run --net=host  -v .:/src hugomods/hugo:ci-0.131.0 hugo server -D --logLevel debug --disableFastRender --watch --theme hugo-scroll
 ```
 
 # debug
