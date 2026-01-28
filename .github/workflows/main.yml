@@ -1,0 +1,46 @@
+name: Generate & Publish
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main  # Set a branch to deploy
+  pull_request:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04
+    env:
+      HUGO_CACHEDIR: /tmp/hugo_cache
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true  # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.131.0'
+          extended: true
+          
+      - uses: actions/cache@v4
+        with:
+          path: ${{ env.HUGO_CACHEDIR }} # <- Use the same env variable just right here
+          key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-hugomod-
+      
+      - name: Build
+        run: hugo -D -E -F --theme up-business-theme -b https://ecobike.pt --minify
+
+      - name: Install ncftp
+        run: sudo apt install -y ncftp
+
+      - name: Upload site
+        if: false
+        env:
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: ncftpput -R -v -u website@ecobike.pt -p $FTP_PASSWORD ftp.ecobike.pt / public/*
