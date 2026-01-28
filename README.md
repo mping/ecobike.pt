@@ -37,5 +37,5 @@ python -m http.server --directory public
 # upload
 
 ```
-ncftpput -R -v -u website@meditarlisboa.pt -p $FTP_PASSWORD ftp.meditarlisboa.pt / public/*
+npx wrangler pages deploy public --project-name ecobike
 ```
