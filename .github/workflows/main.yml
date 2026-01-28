@@ -34,7 +34,7 @@ jobs:
             ${{ runner.os }}-hugomod-
       
       - name: Build
-        run: hugo -D -E -F --theme up-business-theme -b https://ecobike.pt --minify
+        run: hugo -D -E -F --theme hugo-scroll -b https://ecobike.pt --minify
 
       - name: Install ncftp
         run: sudo apt install -y ncftp
